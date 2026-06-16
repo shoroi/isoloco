@@ -73,7 +73,7 @@ These scripts contain our cluster's specifics (SLURM account, partitions/GPUs, m
 If you find this work useful, please cite:
 
 ```bibtex
-@article{horoi2026merging,
+@article{horoi2026isoloco,
   title  = {Can Model Merging Improve Aggregation in DiLoCo?},
   author = {Horoi, Stefan and Thérien, Benjamin and Wolf, Guy and Belilovsky, Eugene},
   year   = {2026},
