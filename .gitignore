@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Experiment tracking / logs
+wandb/
+*.log
+
+# SLURM job logs (keep the directory, ignore its contents)
+scripts/logs/*
+!scripts/logs/.gitkeep
+
+# Data, tokenized shards, checkpoints
+datasets/
+*.npy
+*.bin
+*.pt
+*.ckpt
+checkpoints/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store

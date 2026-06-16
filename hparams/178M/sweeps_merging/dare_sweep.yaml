@@ -1,0 +1,73 @@
+name: dare_sweep
+project: isoloco_178M_merging
+method: grid
+metric: {"goal": "minimize", "name": "eval/valid_loss"}
+program: train.py
+command:
+  - /usr/bin/env
+  - torchrun
+  - --nproc_per_node=4
+  - ${program}
+  - ${args_no_boolean_flags}
+
+parameters:
+  # Run configuration
+  strategy:
+    value: mergeloco
+  run_name:
+    value: dare_sweep
+
+  # Data configuration
+  save_path:
+    value: $SAVE_DIR
+  shards_path:
+    value: $DATA_DIR/dclm_tokenized-train_valid_test
+  token_budget:
+    value: 3552440320
+
+  # Model configuration
+  hparams_file:
+    value: hparams/178M/178M_model_hparams.json
+  use_compile:
+    value: True
+  
+  # Virtual workers
+  virtual_workers:
+    value: 2
+  micro_batch_size:
+    value: 32
+  batch_size:
+    value: 32
+  inner_steps:
+    value: 30
+
+  # Inner parameters
+  inner_beta2:
+    value: 0.95
+  warmup_steps:
+    value: 0.1
+  inner_learning_rate:
+    values:
+    - 0.00276
+  weight_decay:
+    value: 0.1
+
+  # outer_parameters
+  outer_momentum:
+    value: 0
+  outer_learning_rate:
+    values:
+    - 1.5
+
+  # MergeLoCo configuration
+  sparsity:
+    values:
+    - 0.1
+  prune_method:
+    value: random
+  prune_dimension:
+    value: all
+  rescale_pruned:
+    value: "true"
+  ties_disjoint:
+    value: "false"

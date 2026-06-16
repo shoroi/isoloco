@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where   = ["src"]
+include = ["tplr*"]
+
+[project]
+name = "isoloco"
+version = "0.1.0"
+description = "Code for 'Can Model Merging Improve Aggregation in DiLoCo?' — model-merging aggregation strategies for DiLoCo."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "torch",
+    "transformers",
+    "datasets",
+    "numpy",
+    "einops",
+    "pip",
+    "wandb",
+    "psutil",
+    "accelerate",
+    "tqdm",
+    "rich>=13.0.0",
+    "python-logging-loki>=0.3.1",
+    "uvloop>=0.21.0",
+    "setuptools"
+]
+
+[tool.uv]
+prerelease = "allow"
+
+[tool.ruff]
+# Exclude directories that often trigger permission issues
+exclude = [
+    ".git",
+    "venv",
+    ".venv",
+    "build",
+    "dist",
+    "__pycache__",
+    "downloads",
+    "eggs",
+    ".eggs",
+]

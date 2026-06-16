@@ -1,0 +1,46 @@
+name: adamw_baseline
+project: isoloco_178M_main
+method: grid
+program: train.py
+command:
+  - /usr/bin/env
+  - torchrun
+  - --nproc_per_node=4
+  - ${program}
+  - ${args_no_boolean_flags}
+
+parameters:
+  # Run configuration
+  strategy:
+    value: adam_baseline
+  run_name:
+    value: adamw_baseline
+
+  # Data configuration
+  save_path:
+    value: $SAVE_DIR
+  shards_path:
+    value: $DATA_DIR/dclm_tokenized-train_valid_test
+  token_budget:
+    value: 3552440320
+
+  # Model configuration
+  hparams_file:
+    value: hparams/178M/178M_model_hparams.json
+  use_compile:
+    value: True
+
+  # Training configuration
+  micro_batch_size:
+    value: 32
+  batch_size:
+    value: 64
+  inner_beta2:
+    value: 0.95
+  warmup_steps:
+    value: 0.1
+  outer_learning_rate:
+    value: 0.00195
+  weight_decay:
+    values:
+    - 0.15
